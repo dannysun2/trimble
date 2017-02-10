@@ -21,6 +21,6 @@ class Tweet
 
   spatial_index :coordinates
 
-  index({ coordinates: '2d', hashtags: 1 }), background: true
+  index({ coordinates: '2d', hashtags: 1 }), { background: true }
   # rake db:mongoid:create_indexes
 end
