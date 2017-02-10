@@ -40,7 +40,7 @@ class TweetsController < ApplicationController
   def get_tweets
     # invoke rake task
     Rake::Task['testing_feed'].invoke(params)
-    @results = Tweet.order('tweeted_at DESC').page params[:page]
+    @results = Tweet.all.order_by(:tweeted_at.desc).page params[:page]
   end
 
   # POST /tweets
