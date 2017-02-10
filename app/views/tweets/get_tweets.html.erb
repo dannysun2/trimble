@@ -1,1 +1,6 @@
-<%= @results.methods.sort %>
+<% @results.each do |result| %>
+<%= result %>
+<% end %>
+
+
+Count: <%= @results.length %>

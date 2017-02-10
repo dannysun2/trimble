@@ -19,7 +19,7 @@
 
 <% if @tweets.present? %>
   <% @tweets.each do |tweet| %>
-  Tweet: <%= tweet.message %><br />ßßß
+  Tweet: <%= tweet.message %>
   <% end %>
 
   <%= paginate @tweets %>

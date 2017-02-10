@@ -37,10 +37,7 @@ class TweetsController < ApplicationController
   end
 
   def get_tweets
-    loc = Mongoid::Geospatial::Point.new(params[:longitude], params[:latitude])
-    binding.pry
-    @results = Tweet.near(location: loc.radius(params[:radius]))
-    # @results = Tweet.all.order_by(:tweeted_at.desc).page params[:page]
+    @results = Tweet.geo_near([params[:longitude],params[:latitude]]).spherical.max_distance(params[:radius]).criteria.map(&:message)
   end
 
   # POST /tweets
