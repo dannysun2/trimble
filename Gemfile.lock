@@ -48,6 +48,7 @@ GEM
     execjs (2.7.0)
     faraday (0.11.0)
       multipart-post (>= 1.2, < 3)
+    geocoder (1.4.3)
     hike (1.2.3)
     http (2.2.1)
       addressable (~> 2.3)
@@ -168,6 +169,7 @@ PLATFORMS
 DEPENDENCIES
   coffee-rails (~> 3.2.1)
   eventmachine
+  geocoder
   jquery-rails
   kaminari
   mongoid

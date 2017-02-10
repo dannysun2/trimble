@@ -1,18 +1,22 @@
+
+require 'geocoder'
 class Tweet
+  include Mongoid::Document
+  include Geocoder::Model::Mongoid
 
   def self.save_tweet(tweet)
-    twt = Tweet.new(message: tweet.text, hashtags: tweet.hashtags, location: tweet.geo, tweeted_at: tweet.created_at)
+    twt = Tweet.new(message: tweet.text, hashtags: tweet.hashtags.map{|x| x[:text]}, address: tweet.user.location, tweeted_at: tweet.created_at)
     twt.save!
   end
 
-  include Mongoid::Document
-  include Mongoid::Geospatial
-
   field :message, type: String
   field :hashtags, type: Array
-  field :location, type: Point
+  field :coordinates, :type => Array
+  field :address
   field :tweeted_at, type: DateTime
 
-  # Inserts Tweets into a MongoDB “tweets” collection that has a geo-spatial index to ensure fast query
-  spatial_index :location
+  geocoded_by :address               # can also be an IP address
+  after_validation :geocode          # auto-fetch coordinates
+
+  # rake db:mongoid:create_indexes
 end

@@ -18,15 +18,8 @@ require 'fiber'
         # pulls requested hashtags and converts to array
           fibers = [Fiber.current]
           # search by hashtags, long, lat, and radius
-          client.filter(:track => topics.join(','), :geocode => "40.7033127,-73.979681, 1mi") do |tweet|
-              # create instance of tweet
-              Tweet.save_tweet(tweet)
-              # twt = Tweet.new
-              # twt.message = tweet.text
-              # twt.hashtags = tweet.hashtags
-              # twt.geo = tweet.geo
-              # twt.tweeted_at = tweet.created_at
-              # twt.save!
+          client.filter(:track => topics.join(','), :location => "40.7033127,-73.979681") do |tweet|
+            Tweet.save_tweet(tweet)
           end
         EM.stop
       end
