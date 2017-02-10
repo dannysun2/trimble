@@ -7,6 +7,9 @@ gem 'rails', '3.2.13'
 
 gem "mongoid"
 gem "twitter"
+gem "eventmachine"
+gem 'mongoid-geospatial', require: 'mongoid/geospatial'
+gem 'kaminari'
 
 # Gems used only for assets and not required
 # in production environments by default.

@@ -1,4 +1,5 @@
 require 'rake'
+Assignment::Application.load_tasks
 class PagesController < ApplicationController
   # GET /pages
   # GET /pages.json
@@ -23,8 +24,13 @@ class PagesController < ApplicationController
   end
 
   def get_tweets
-    puts params
-    Rake::Task['testing_feed'].invoke(2,3,6)
+    # #mongoid document example array field
+    # { some_array: [ 'where', 'is', 'pancakes', 'house?' ] }
+    # #search through the field like this
+    # where(:some_array => 'pancakes')
+    @params = params
+    # Rake::Task['testing_feed'].invoke(params[:longitude],params[:latitude],params[:radius])
+    Rake::Task['testing'].invoke
   end
 
   # GET /pages/new

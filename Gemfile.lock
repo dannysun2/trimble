@@ -44,6 +44,7 @@ GEM
       unf (>= 0.0.5, < 1.0.0)
     equalizer (0.0.11)
     erubis (2.7.0)
+    eventmachine (1.2.2)
     execjs (2.7.0)
     faraday (0.11.0)
       multipart-post (>= 1.2, < 3)
@@ -63,6 +64,9 @@ GEM
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
     json (1.8.6)
+    kaminari (0.17.0)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -74,6 +78,10 @@ GEM
       moped (~> 1.4)
       origin (~> 1.0)
       tzinfo (~> 0.3.29)
+    mongoid-geospatial (4.0.0)
+      activemodel (>= 3.2)
+      activesupport (>= 3.2)
+      mongoid (>= 3.0.0)
     moped (1.5.3)
     multi_json (1.12.1)
     multipart-post (2.0.0)
@@ -154,8 +162,11 @@ PLATFORMS
 
 DEPENDENCIES
   coffee-rails (~> 3.2.1)
+  eventmachine
   jquery-rails
+  kaminari
   mongoid
+  mongoid-geospatial
   rails (= 3.2.13)
   sass-rails (~> 3.2.3)
   twitter

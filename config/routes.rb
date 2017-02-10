@@ -1,4 +1,7 @@
 Assignment::Application.routes.draw do
+  resources :tweets
+
+
   resources :pages
   root :to => 'pages#index'
   get '/get_tweets', to: 'pages#get_tweets'
