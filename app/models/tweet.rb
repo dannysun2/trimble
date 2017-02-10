@@ -1,4 +1,10 @@
 class Tweet
+
+  def self.save_tweet(tweet)
+    twt = Tweet.new(message: tweet.text, hashtags: tweet.hashtags, location: tweet.geo, tweeted_at: tweet.created_at)
+    twt.save!
+  end
+
   include Mongoid::Document
   include Mongoid::Geospatial
 

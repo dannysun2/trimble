@@ -1,8 +1,9 @@
 require 'eventmachine'
 require 'fiber'
   desc 'pulls feed'
-  task :testing_feed, [:obj] => :environment do |t, args|
-    puts obj
+  task testing_feed: :environment do
+  # task :testing_feed, [:obj] => :environment do |t, args|
+    # puts obj
     # clears tweet database
     # Tweet.delete_all
       EM.run do
@@ -13,17 +14,18 @@ require 'fiber'
           config.access_token        = "30624088-rUXFJVlA5hHb3aDnAsdhCy8sQYtkNmvoECQukh0Y"
           config.access_token_secret = "ev5YKmTWXfuLv46fub04fPO0lC6hewR4nxMrSmwLw0"
         end
-
+        topics = ["trump"]
         # pulls requested hashtags and converts to array
           fibers = [Fiber.current]
           # search by hashtags, long, lat, and radius
-          client.filter(:track => ''), :geocode => "40.7033127,-73.979681, 5000km") do |tweet|
+          client.filter(:track => topics.join(','), :geocode => "40.7033127,-73.979681, 1mi") do |tweet|
               # create instance of tweet
-              twt = Tweet.new
-              twt.message = tweet.text
-              twt.hashtags = tweet.hashtags
-              twt.geo = tweet.geo
-              twt.tweeted_at = tweet.created_at
+              Tweet.save_tweet(tweet)
+              # twt = Tweet.new
+              # twt.message = tweet.text
+              # twt.hashtags = tweet.hashtags
+              # twt.geo = tweet.geo
+              # twt.tweeted_at = tweet.created_at
               # twt.save!
           end
         EM.stop
