@@ -8,8 +8,8 @@
       <%= label_tag "Latitude" %>
       <%= text_field_tag :latitude, params[:latitude] %>
 
-      <!-- <%= label_tag 'Radius' %>
-      <%= text_field_tag :radius, params[:radius] %> -->
+      <%= label_tag 'Radius' %>
+      <%= text_field_tag :radius, params[:radius] %>
 
       <%= submit_tag "Search", class: "btn btn-large btn-primary" %>
     <% end %>
@@ -24,3 +24,5 @@
 
   <%= paginate @tweets %>
 <% end %>
+
+Count: <%= @tweets.length %>

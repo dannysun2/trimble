@@ -14,10 +14,9 @@ require 'fiber'
         end
           fibers = [Fiber.current]
           client.filter(:locations => "-180,-90,180,90") do |tweet|
-            fibers << Fiber.new do
-              puts tweet.message
-              # Tweet.save_tweet(tweet)
-            end
+            fibers << Fiber.new{
+              Tweet.save_tweet(tweet)
+            }.resume
           end
         EM.stop
       end

@@ -10,6 +10,7 @@ gem "twitter"
 gem "eventmachine"
 gem 'mongoid-geospatial', require: 'mongoid/geospatial'
 gem 'kaminari'
+gem 'mongoid_geospatial', '~> 3.1'
 gem 'geocoder'
 gem 'rails_12factor', group: :production
 # Gems used only for assets and not required
