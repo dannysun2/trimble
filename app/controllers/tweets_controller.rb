@@ -37,9 +37,10 @@ class TweetsController < ApplicationController
   end
 
   def get_tweets
-    # invokes rake task
-    Rake::Task['testing_feed'].invoke(params)
-    @results = Tweet.all.order_by(:tweeted_at.desc).page params[:page]
+    loc = Mongoid::Geospatial::Point.new(params[:longitude], params[:latitude])
+    binding.pry
+    @results = Tweet.near(location: loc.radius(params[:radius]))
+    # @results = Tweet.all.order_by(:tweeted_at.desc).page params[:page]
   end
 
   # POST /tweets

@@ -26,7 +26,7 @@ group :assets do
 end
 
 group :development do
-  gem 'web-console-rails3'
+  gem 'pry'
 end
 
 gem 'jquery-rails'

@@ -15,7 +15,7 @@ class Tweet
   field :coordinates, :type => Point
   field :address
   field :tweeted_at, type: DateTime
-
+  spatial_scope :coordinates
   geocoded_by :address               # can also be an IP address
   after_validation :geocode          # auto-fetch coordinates
 
