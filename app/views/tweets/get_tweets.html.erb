@@ -1,6 +1,20 @@
+<div>
+  <ul>
 <% @results.each do |result| %>
-<%= result %>
+  <li><%= result %></li>
 <% end %>
+</ul>
+</div>
 
+<%= label_tag 'hashtags' %>
 
+<div>
+Search within results for hashtags: (seperated by commas)
+<%= form_tag get_tweets_path, :method => 'get' do %>
+<%= text_field_tag :hashtags, params[:hashtags] %>
+<% end %>
+</div>
+
+<div>
 Count: <%= @results.length %>
+</div>

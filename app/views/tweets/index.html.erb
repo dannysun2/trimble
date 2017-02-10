@@ -18,11 +18,17 @@
 </div>
 
 <% if @tweets.present? %>
-  <% @tweets.each do |tweet| %>
-  Tweet: <%= tweet.message %>
-  <% end %>
+<div>
+  <ul>
+    <% @tweets.each do |tweet| %>
+      <li><%= tweet.message %></li>
+    <% end %>
+  </ul>
+</div>
 
-  <%= paginate @tweets %>
+<%= paginate @tweets %>
 <% end %>
 
+<div>
 Count: <%= @tweets.length %>
+</div>
