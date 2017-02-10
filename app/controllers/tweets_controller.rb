@@ -4,7 +4,7 @@ class TweetsController < ApplicationController
   # GET /tweets
   # GET /tweets.json
   def index
-    @tweets = Tweet.all
+    @tweets = Tweet.all.order_by(:tweeted_at.desc).page params[:page]
 
     respond_to do |format|
       format.html # index.html.erb

@@ -14,7 +14,7 @@ require 'fiber'
           config.access_token        = "30624088-rUXFJVlA5hHb3aDnAsdhCy8sQYtkNmvoECQukh0Y"
           config.access_token_secret = "ev5YKmTWXfuLv46fub04fPO0lC6hewR4nxMrSmwLw0"
         end
-        topics = ["hey"]
+        topics = ["hello"]
         # pulls requested hashtags and converts to array
           fibers = [Fiber.current]
           # search by hashtags, long, lat, and radius
