@@ -16,3 +16,11 @@
 
   </div>
 </div>
+
+<% if @tweets.present? %>
+<% @tweets.each do |tweet| %>
+Tweet: <%= tweet.message %><br />
+<% end %>
+
+<%= paginate @tweets %>
+<% end %>
