@@ -1,10 +1,8 @@
 require 'eventmachine'
 require 'fiber'
   desc 'pulls feed'
-  # task testing_feed: :environment do
-  task :testing_feed, [:obj] => :environment do |t, args|
+  task twitter_stream: :environment do |t, args|
     # clears tweet database
-    # Tweet.delete_all
       EM.run do
         # twitter creds
         client = Twitter::Streaming::Client.new do |config|
@@ -14,14 +12,12 @@ require 'fiber'
           config.access_token        = "30624088-rUXFJVlA5hHb3aDnAsdhCy8sQYtkNmvoECQukh0Y"
           config.access_token_secret = "ev5YKmTWXfuLv46fub04fPO0lC6hewR4nxMrSmwLw0"
         end
-        topics = ["hello"]
-        # pulls requested hashtags and converts to array
           fibers = [Fiber.current]
-          # search by hashtags, long, lat, and radius
-          longitude = args.obj[:longitude].to_s
-          latitude = args.obj[:latitude].to_s
-          client.filter(:track => topics.join(','), :location => "#{longitude},#{latitude}") do |tweet|
-            Tweet.save_tweet(tweet)
+          client.filter(:locations => "-180,-90,180,90") do |tweet|
+            fibers << Fiber.new do
+              puts tweet.message
+              # Tweet.save_tweet(tweet)
+            end
           end
         EM.stop
       end

@@ -1,5 +1,3 @@
-require 'rake'
-Assignment::Application.load_tasks
 class TweetsController < ApplicationController
   # GET /tweets
   # GET /tweets.json
