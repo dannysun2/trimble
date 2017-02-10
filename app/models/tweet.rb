@@ -12,7 +12,7 @@ class Tweet
 
   field :message, type: String
   field :hashtags, type: Array
-  field :coordinates, :type => Point
+  field :coordinates, :type => Array
   field :address
   field :tweeted_at, type: DateTime
   spatial_scope :coordinates
@@ -20,5 +20,7 @@ class Tweet
   after_validation :geocode          # auto-fetch coordinates
 
   spatial_index :coordinates
+
+  index({ coordinates: '2d', hashtags: 1 })
   # rake db:mongoid:create_indexes
 end
