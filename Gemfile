@@ -10,7 +10,7 @@ gem "twitter"
 gem "eventmachine"
 gem 'mongoid-geospatial', require: 'mongoid/geospatial'
 gem 'kaminari'
-
+gem 'rails_12factor', group: :production
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -43,3 +43,5 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'debugger'
+
+ruby '2.0.0'

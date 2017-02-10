@@ -24,7 +24,7 @@ require 'fiber'
               twt.hashtags = tweet.hashtags
               twt.geo = tweet.geo
               twt.tweeted_at = tweet.created_at
-              twt.save!
+              # twt.save!
           end
         EM.stop
       end
