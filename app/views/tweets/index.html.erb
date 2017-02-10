@@ -1,27 +1,18 @@
-<h1>Listing tweets</h1>
+<div class="row">
+  <div class="span 6 offset 3">
+      <%= form_tag get_tweets_path, :method => 'get' do %>
 
-<table>
-  <tr>
-    <th>Message</th>
-    <th>Location</th>
-    <th>Tweeted at</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+      <%= label_tag "Longitude" %>
+      <%= text_field_tag :longitude, params[:longitude] %>
 
-<% @tweets.each do |tweet| %>
-  <tr>
-    <td><%= tweet.message %></td>
-    <td><%= tweet.location %></td>
-    <td><%= tweet.tweeted_at %></td>
-    <td><%= link_to 'Show', tweet %></td>
-    <td><%= link_to 'Edit', edit_tweet_path(tweet) %></td>
-    <td><%= link_to 'Destroy', tweet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+      <%= label_tag "Latitude" %>
+      <%= text_field_tag :latitude, params[:latitude] %>
 
-<br />
+      <%= label_tag 'Radius' %>
+      <%= text_field_tag :radius, params[:radius] %>
 
-<%= link_to 'New Tweet', new_tweet_path %>
+      <%= submit_tag "Search", class: "btn btn-large btn-primary" %>
+    <% end %>
+
+  </div>
+</div>

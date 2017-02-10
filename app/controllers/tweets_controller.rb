@@ -37,6 +37,12 @@ class TweetsController < ApplicationController
     @tweet = Tweet.find(params[:id])
   end
 
+  def get_tweets
+    # invoke rake task
+    Rake::Task['testing_feed'].invoke(params)
+    @results = Tweets.order('tweeted_at DESC').page params[:page]
+  end
+
   # POST /tweets
   # POST /tweets.json
   def create
