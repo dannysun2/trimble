@@ -82,4 +82,4 @@ test:
 production:
   sessions:
     default:
-      uri: <%= ENV['PROD_MONGODB'] %>
+      uri: <%= ENV['MONGOLAB_URI'] %>
