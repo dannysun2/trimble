@@ -1,4 +1,3 @@
-
 require 'geocoder'
 class Tweet
   include Mongoid::Document
@@ -12,15 +11,13 @@ class Tweet
 
   field :message, type: String
   field :hashtags, type: Array
-  field :coordinates, :type => Point
+  field :coordinates, :type => Point, sphere: true
   field :address
   field :tweeted_at, type: DateTime
-  spatial_scope :coordinates
+
   geocoded_by :address               # can also be an IP address
   after_validation :geocode          # auto-fetch coordinates
 
-  spatial_index :coordinates
-
-  index({ coordinates: "2d", hashtags: 1 }, { background: true })
+  index({ coordinates: "2dsphere", hashtags: 1 }, { background: true })
   # rake db:mongoid:create_indexes
 end

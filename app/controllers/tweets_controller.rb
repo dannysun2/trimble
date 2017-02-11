@@ -38,7 +38,8 @@ class TweetsController < ApplicationController
 
   def get_tweets
     # @results = Tweet.geo_near([params[:longitude],params[:latitude]]).spherical.max_distance(params[:radius]).criteria.map(&:message)
-    @results = Tweet.nearby([params[:longitude].to_i,params[:latitude].to_i]).map(&:message)
+    @results = Tweet.where(:coordinates => {"$near" => [params[:latitude].to_i,params[:longitude].to_i] , '$maxDistance' => params[:radius].to_i.fdiv(69)})
+    # @results = Tweet.nearby([params[:longitude].to_i,params[:latitude].to_i]).map(&:message)
     if params[:hashtags].present?
       @results = Tweet.where(:hashtags => params[:hashtags])
     end

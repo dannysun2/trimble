@@ -1,8 +1,7 @@
 <div>
   <ul>
 <% @results.each do |result| %>
-  <% result = params[:hashtags].present? ? result.message : result  %>
-  <li> <%= result %> </li>
+  <li> <%= result.message %> </li>
 <% end %>
 </ul>
 </div>
