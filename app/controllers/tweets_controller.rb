@@ -40,8 +40,10 @@ class TweetsController < ApplicationController
 
   def get_tweets
     @results = Tweet.where(:coordinates => {"$near" => [params[:latitude].to_i,params[:longitude].to_i] , '$maxDistance' => params[:radius].to_i.fdiv(69)})
+    .order_by(:tweeted_at.desc).page(params[:page]).per(10)
     if params[:hashtags].present?
       @results = Tweet.where(:hashtags => params[:hashtags])
+      .order_by(:tweeted_at.desc).page(params[:page]).per(10)
     end
   end
 
@@ -49,7 +51,6 @@ class TweetsController < ApplicationController
   # POST /tweets.json
   def create
     @tweet = Tweet.new(tweet_params)
-
     respond_to do |format|
       if @tweet.save
         format.html { redirect_to @tweet, notice: 'Tweet was successfully created.' }

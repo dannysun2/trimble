@@ -1,21 +1,49 @@
-<div>
-  <ul>
-<% @results.each do |result| %>
-  <li> <%= result.message %> </li>
-<% end %>
-</ul>
+<div class="col-md-6 col-md-offset-3">
+
+<div class="ui-303">
+  <div class="o-timeline">
+    <% @results.each do |tweet| %>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <p><%= tweet.message %></p>
+          <% unless tweet.hashtags.empty? %>
+            <small>
+              <% tweet.hashtags.each do |hashtag| %>
+                <i>#<%= hashtag %></i>
+              <% end %>
+            </small>
+          <% end %>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+    <% end %>
+  </div>
 </div>
+<hr>
 
-<%= label_tag 'hashtags' %>
+<div class="ui-15">
+    <div class="ui-content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12 ui-padd">
+            <div class="ui-form">
 
-<div>
-Search within results for hashtags: (seperated by commas)
-<%= form_tag get_tweets_path, :method => 'get' do %>
-<%= text_field_tag :hashtags, params[:hashtags] %>
-<%= submit_tag "Search", class: "btn btn-large btn-primary" %>
-<% end %>
+              <%= form_tag get_tweets_path, :method => 'get', class: 'form-inline' do %>
+              <%= text_field_tag :hashtags, params[:hashtags], placeholder: 'Enter hashtags', class: 'form-control' %>
+              <%= submit_tag "Search", class: "btn btn-large btn-primary" %>
+              <% end %>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 </div>
+<%= paginate @results %>
 
-<div>
-Count: <%= @results.length %>
+
+
+
+
 </div>

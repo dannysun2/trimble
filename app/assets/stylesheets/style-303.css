@@ -515,7 +515,6 @@ body{
 	background:#f4f8fd;
 }
 .ui-303{
-	max-width:800px;
 	margin:50px auto;
 }
 
@@ -607,7 +606,6 @@ body{
 
 /* Ui Content */
 .ui-15 .ui-content{
-	max-width:700px;
 	margin:30px auto;
 	background:#fff;
 	border:1px solid #ddd;

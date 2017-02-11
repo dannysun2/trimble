@@ -12,7 +12,7 @@ require 'fiber'
           config.access_token        = "30624088-rUXFJVlA5hHb3aDnAsdhCy8sQYtkNmvoECQukh0Y"
           config.access_token_secret = "ev5YKmTWXfuLv46fub04fPO0lC6hewR4nxMrSmwLw0"
         end
-          client.filter(:locations => "-180,-90,180,90") do |tweet|
+          client.filter(:locations => "-180,-90,180,90", :language => 'en', :filter_level => 'low') do |tweet|
             Fiber.new{
               Tweet.save_tweet(tweet)
             }.resume
