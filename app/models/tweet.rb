@@ -5,7 +5,7 @@ class Tweet
   include Geocoder::Model::Mongoid
 
   def self.save_tweet(tweet)
-    twt = Tweet.new(message: tweet.text, hashtags: tweet.hashtags.map{|x| x[:text]}, address: tweet.user.location, tweeted_at: tweet.created_at)
+    twt = Tweet.new(message: tweet.text, hashtags: tweet.hashtags.map{|x| x[:text].downcase}, address: tweet.user.location, tweeted_at: tweet.created_at)
     twt.save!
   end
 
