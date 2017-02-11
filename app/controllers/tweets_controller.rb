@@ -2,13 +2,15 @@ class TweetsController < ApplicationController
   # GET /tweets
   # GET /tweets.json
   def index
-    @tweets = Tweet.all.order_by(:tweeted_at.desc).page params[:page]
+    @tweets = Tweet.all.order_by(:tweeted_at.desc).page(params[:page]).per(10)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @tweets }
     end
   end
 
+  def page
+  end
   # GET /tweets/1
   # GET /tweets/1.json
   def show
@@ -37,9 +39,7 @@ class TweetsController < ApplicationController
   end
 
   def get_tweets
-    # @results = Tweet.geo_near([params[:longitude],params[:latitude]]).spherical.max_distance(params[:radius]).criteria.map(&:message)
     @results = Tweet.where(:coordinates => {"$near" => [params[:latitude].to_i,params[:longitude].to_i] , '$maxDistance' => params[:radius].to_i.fdiv(69)})
-    # @results = Tweet.nearby([params[:longitude].to_i,params[:latitude].to_i]).map(&:message)
     if params[:hashtags].present?
       @results = Tweet.where(:hashtags => params[:hashtags])
     end

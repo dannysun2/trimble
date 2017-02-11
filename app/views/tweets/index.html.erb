@@ -1,34 +1,46 @@
-<div class="row">
-  <div class="span 6 offset 3">
-      <%= form_tag get_tweets_path, :method => 'get' do %>
-
-      <%= label_tag "Latitude" %>
-      <%= text_field_tag :latitude, params[:latitude] %>
-
-      <%= label_tag "Longitude" %>
-      <%= text_field_tag :longitude, params[:longitude] %>
-
-      <%= label_tag 'Radius' %>
-      <%= text_field_tag :radius, params[:radius] %>
-
-      <%= submit_tag "Search", class: "btn btn-large btn-primary" %>
-    <% end %>
-
-  </div>
-</div>
-
+<div class="col-md-6 col-md-offset-3">
 <% if @tweets.present? %>
-<div>
-  <ul>
-    <% @tweets.each do |tweet| %>
-      <li><%= tweet.message %></li>
-    <% end %>
-  </ul>
-</div>
-
-<%= paginate @tweets %>
+  <div class="ui-303">
+    <div class="o-timeline">
+      <% @tweets.each do |tweet| %>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <p><%= tweet.message %></p>
+            <% unless tweet.hashtags.empty? %>
+              <small><b>HASHTAGS:</b> <%= tweet.hashtags.join(',') %></small>
+            <% end %>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <hr>
 <% end %>
 
-<div>
-Count: <%= @tweets.length %>
+<div class="ui-15">
+    <div class="ui-content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12 ui-padd">
+            <div class="ui-form">
+              <%= form_tag get_tweets_path, :method => 'get' do %>
+                <div class="ui-input">
+                  <%= text_field_tag :latitude, params[:latitude], placeholder: 'Enter Latitude', class: 'form-control' %>
+                </div>
+                <div class="ui-input">
+                  <%= text_field_tag :longitude, params[:longitude], placeholder: 'Enter Longitude', class: 'form-control' %>
+                </div>
+                <div class="ui-input">
+                  <%= text_field_tag :radius, params[:radius], placeholder: 'Enter Radius', class: 'form-control' %>
+                </div>
+                <%= submit_tag "Search", class: "btn btn-red btn-lg btn-block" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+<%= paginate @tweets %>
 </div>
