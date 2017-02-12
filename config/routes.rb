@@ -1,5 +1,5 @@
 Assignment::Application.routes.draw do
-  root :to => 'tweets#index'
+  root :to => 'tweets#page'
   get '/get_tweets', to: 'tweets#get_tweets'
 
   # The priority is based upon order of creation:
