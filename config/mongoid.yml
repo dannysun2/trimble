@@ -82,4 +82,7 @@ test:
 production:
   sessions:
     default:
-      uri: <%= ENV['MONGODB_URI'] %>
+      uri: mongodb://heroku_wqxxxljg:admrp29s2m49r737dpsc108m1a@ds149059.mlab.com:49059/heroku_wqxxxljg
+      options:
+        max_pool_size: 1
+        skip_version_check: true
