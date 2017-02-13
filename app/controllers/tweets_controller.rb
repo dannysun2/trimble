@@ -37,7 +37,10 @@ class TweetsController < ApplicationController
   end
 
   def get_tweets
-    @results = Tweet.where(:coordinates => {"$near" => [params[:latitude].to_i,params[:longitude].to_i] , '$maxDistance' => params[:radius].to_i.fdiv(69)})
+    lat = params[:latitude].to_i
+    long = params[:longitude].to_i
+    r = params[:radius].to_i.fdiv(69)
+    @results = Tweet.where(:coordinates => {"$near" => [lat,lng , '$maxDistance' => r})
     .order_by(:tweeted_at.desc).page(params[:page]).per(10)
     if params[:hashtags].present?
       hashtags = params[:hashtags].downcase.split(' ')
