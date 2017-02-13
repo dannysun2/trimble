@@ -41,7 +41,7 @@ class TweetsController < ApplicationController
     .order_by(:tweeted_at.desc).page(params[:page]).per(10)
     if params[:hashtags].present?
       hashtags = params[:hashtags].downcase.split(' ')
-      @results = Tweet.where(:hashtags => hashtags)
+      @results = @results.where(:hashtags => {"$in" => hashtags})
       .order_by(:tweeted_at.desc).page(params[:page]).per(10)
     end
   end
