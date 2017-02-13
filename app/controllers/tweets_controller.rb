@@ -9,9 +9,6 @@ class TweetsController < ApplicationController
     end
   end
 
-  def page
-    @welcome = "Hello world"
-  end
   # GET /tweets/1
   # GET /tweets/1.json
   def show

@@ -5,7 +5,7 @@ gem 'rails', '3.2.13'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem "mongoid", :git => "https://github.com/mongodb/mongoid.git", :branch => '3.0.0-stable'
+gem "mongoid"#, :git => "https://github.com/mongodb/mongoid.git", :branch => '3.0.0-stable'
 gem "twitter"
 gem "eventmachine"
 gem 'mongoid-geospatial', require: 'mongoid/geospatial'

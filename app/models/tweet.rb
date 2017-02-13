@@ -18,6 +18,6 @@ class Tweet
   geocoded_by :address               # can also be an IP address
   after_validation :geocode          # auto-fetch coordinates
 
-  index({ coordinates: "2d", hashtags: 1 }, { background: true })
+  index({ coordinates: '2dsphere', hashtags: 1 }, { background: true })
   # rake db:mongoid:create_indexes
 end
