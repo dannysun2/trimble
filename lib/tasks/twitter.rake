@@ -7,10 +7,10 @@ require 'fiber'
         # twitter creds
         client = Twitter::Streaming::Client.new do |config|
           # MOVE INTO ENV VARIABLES
-          config.consumer_key        = "fN1FWoIo4Q3WmWYPHuqCyA"
-          config.consumer_secret     = "IJ71PJzH5Qwol2QEhMHoMpnGuh0l5IfpiokWIzOI"
-          config.access_token        = "30624088-rUXFJVlA5hHb3aDnAsdhCy8sQYtkNmvoECQukh0Y"
-          config.access_token_secret = "ev5YKmTWXfuLv46fub04fPO0lC6hewR4nxMrSmwLw0"
+          config.consumer_key        = ENV['CONSUMER_KEY']
+          config.consumer_secret     = ENV['CONSUMER_SECRET']
+          config.access_token        = ENV['ACCESS_TOKEN']
+          config.access_token_secret = ENV['ACCESS_TOKEN_SECRET']
         end
           client.filter(:locations => "-180,-90,180,90", :language => 'en', :filter_level => 'low') do |tweet|
             Fiber.new{
